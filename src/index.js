@@ -5,10 +5,11 @@ import App from './App'; // App.js 에서 js 생략!
 //import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+ {/* App 을 태그처럼 썼음: 사용자 정의 태그 */}
 root.render(
-  <React.StrictMode>
-    <App /> {/* App 을 태그처럼 썼음: 사용자 정의 태그 */}
-  </React.StrictMode>
+  //<React.StrictMode> {/* 내부적으로 한번 더 엄격하게 검사: StrictMode 주석처리해야 console.log 두번 안 나옴 */}
+    <App />
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
