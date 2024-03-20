@@ -4,6 +4,7 @@ import HelloCss from './02/HelloCss';
 import { FaHome } from "react-icons/fa";
 import MyDiv1 from './03_1/MyDiv1';
 import MyListMain from './04/MyListMain';
+import Lotto from './0318_0319_결석/06/Lotto';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <div><FaHome className='text-2xl text-black' /></div>
       </header>
       <main className='grow flex flex-col justify-center items-center scroll-auto'>
-        <MyListMain />
+        <Lotto />
       </main>
       <footer className='flex justify-center items-center text-white bg-slate-800 h-20'>
         © 2024 OckKyungLim. All rights reserved.
