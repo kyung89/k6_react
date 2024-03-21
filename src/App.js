@@ -1,10 +1,12 @@
 // import './App.css'; /// 전역적으로 쓰는 CSS
-import MyClock from './01_1/MyClock';
+import MyClock from './08/MyClock';
 import HelloCss from './02/HelloCss';
 import { FaHome } from "react-icons/fa";
 import MyDiv1 from './03_1/MyDiv1';
 import MyListMain from './04/MyListMain';
-import Lotto from './0318_0319_결석/06/Lotto';
+import Lotto from './06/Lotto';
+import FoodCard from './07/FoodCard';
+import FoodMain from './07/FoodMain';
 
 function App() {
   return (
@@ -14,7 +16,7 @@ function App() {
         <div><FaHome className='text-2xl text-black' /></div>
       </header>
       <main className='grow flex flex-col justify-center items-center scroll-auto'>
-        <Lotto />
+        <MyClock />
       </main>
       <footer className='flex justify-center items-center text-white bg-slate-800 h-20'>
         © 2024 OckKyungLim. All rights reserved.
