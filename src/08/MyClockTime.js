@@ -29,7 +29,7 @@ function MyClockTime() {
 
   useEffect(() => {
     // console.log("[] =>", currentTime);
-  }, [currentTime]);
+  },);
   // 무조건 실행된다: 렌더링이 일어날 때마다 실행!
 
   return (
