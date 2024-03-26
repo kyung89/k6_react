@@ -10,7 +10,9 @@ import { FaHome } from "react-icons/fa";
 // import TrafficMain from './09/TrafficMain';
 // import RefVal from './10/RefVal';
 import RefInput from "./10/RefInput";
-import BoxOffice from "./11/BoxOffice";
+import BoxOffice from "./05_2/BoxOffice";
+import GalleryCard from "./11/GalleryCard";
+import GalleryMain from "./11/GalleryMain";
 
 function App() {
   return (
@@ -20,7 +22,7 @@ function App() {
         <div><FaHome className='text-2xl text-black' /></div>
       </header>
       <main className='grow flex flex-col justify-center items-center scroll-auto'>
-        <BoxOffice />
+        <GalleryMain />
       </main>
       <footer className='flex justify-center items-center text-white bg-slate-800 h-20'>
         © 2024 OckKyungLim. All rights reserved.
