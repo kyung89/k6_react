@@ -15,7 +15,7 @@ function MyClockTime() {
       setCurrentTime(new Date);
     });
     // setTm(tm + 1);
-    console.log("[] =>", currentTime);
+    //console.log("[] =>", currentTime);
 
     return () => {clearInterval(t)};
   }, []);
