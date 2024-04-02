@@ -19,6 +19,8 @@ import Festival from "./12/Festival";
 import RouteMain from "./13/RouteMain";
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Frcst from "./14/Frcst";
+import UltraSrtFrcst from "./14/UltraSrtFrcst";
+import VilageFrcst from "./14/VilageFrcst";
 
 function App() {
   return (
@@ -45,6 +47,9 @@ function App() {
         <Route path="/photo" element={<GalleryMain />} />
         <Route path="/festival" element={<Festival />} />
         <Route path="/frcst" element={<Frcst />} />
+        
+        <Route path="/ultra/:dt/:area/:x/:y" element={<UltraSrtFrcst />} />
+        <Route path="/vilage/:dt/:area/:x/:y" element={<VilageFrcst />} />
       </Routes>
       </main>
       <footer className='flex justify-center items-center text-white bg-slate-800 h-20'>

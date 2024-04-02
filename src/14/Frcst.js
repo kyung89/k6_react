@@ -1,7 +1,7 @@
 import React from 'react'
 import FrcstNav from './FrcstNav'
 import FrcstMain from './FrcstMain'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
 import TailSelect from '../UI/TailSelect'
 import TailInput from '../UI/TailInput'
 import TailButton from '../UI/TailButton'
@@ -12,17 +12,25 @@ export default function Frcst() {
 
   const dRef = useRef();
   const sRef = useRef();
+
   const [x, setX] = useState();
   const [y, setY] = useState();
+  const [area, setArea] = useState();
+  const [dt, setDt] = useState();
+
+  const navigator = useNavigate();
 
   const ops = getxy.map(item => item['1단계']);
 
   const handleDate = () => {
-    console.log(dRef.current.value);
+    setDt(dRef.current.value.replaceAll('-', ''));
   }
 
   const handleArea = () => {
-    //console.log(sRef.current.value);
+
+    if(sRef.current.value === "---지역 선택---" || sRef.current.value === undefined) return;
+
+    setArea(sRef.current.value);
 
     const filteredData = getxy.filter(item => item['1단계'] == sRef.current.value)[0];
 
@@ -35,6 +43,24 @@ export default function Frcst() {
     console.log("y = ", y);
   }, [x, y])
 
+  // 초단기예보
+  const handleUltra = () => {
+
+    if(dt === "" || dt === undefined) {
+      alert("날짜를 선택하세요");
+      dRef.current.focus();
+      return;
+    }
+
+    if(area === "" || area === undefined) {
+      alert("지역을 선택하세요");
+      sRef.current.focus();
+      return;
+    }
+
+    navigator(`/ultra/${dt}/${area}/${x}/${y}`);
+  }
+
   return (
     <div className='w-11/12 justify-start grid grid-cols-1 md:grid-cols-2 p-2 gap-2'>
       <div>
@@ -44,10 +70,10 @@ export default function Frcst() {
         <TailSelect ops={ops} opDefault="---지역 선택---" selRef={sRef} handleSel={handleArea} />
       </div>
       <div>
-        <TailButton caption="초단기예보" color="blue" handleClick={()=>{}} />
+        <TailButton caption="초단기예보" color="blue" handleClick={handleUltra} />
       </div>
       <div>
-      <TailButton caption="단기예보" color="blue" handleClick={()=>{}} />
+      <TailButton caption="단기예보" color="blue" handleClick={()=>{navigator("/vilage")}} />
       </div>
     </div>
   )
