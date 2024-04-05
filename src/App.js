@@ -21,6 +21,9 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Frcst from "./14/Frcst";
 import UltraSrtFrcst from "./14/UltraSrtFrcst";
 import VilageFrcst from "./14/VilageFrcst";
+import FrcstList from "./14/FrcstList";
+import Recoil1 from "./15/Recoil1";
+import RecoilMain from "./15/RecoilMain";
 
 function App() {
   return (
@@ -29,6 +32,7 @@ function App() {
       <header className='flex justify-between items-center text-xl font-bold h-20 p-10 bg-slate-100'>
         <div>리액트 실습</div>
         <div className="flex justify-end items-center">
+          <Link to="/r1"><div className="mx-5 p-2 rounded-md hover:bg-blue-900 hover:text-white">Recoil</div></Link>
           <Link to="/frcst"><div className="mx-5 p-2 rounded-md hover:bg-blue-900 hover:text-white">예보</div></Link>
           <Link to="/festival"><div className="mx-5 p-2 rounded-md hover:bg-blue-900 hover:text-white">축제</div></Link>
           <Link to="/photo"><div className="mx-5 p-2 rounded-md hover:bg-blue-900 hover:text-white">사진</div></Link>
@@ -48,8 +52,10 @@ function App() {
         <Route path="/festival" element={<Festival />} />
         <Route path="/frcst" element={<Frcst />} />
         
-        <Route path="/ultra/:dt/:area/:x/:y" element={<UltraSrtFrcst />} />
-        <Route path="/vilage/:dt/:area/:x/:y" element={<VilageFrcst />} />
+        <Route path="/flist" element={<FrcstList />} />
+
+        
+        <Route path="/r1" element={<RecoilMain />} />
       </Routes>
       </main>
       <footer className='flex justify-center items-center text-white bg-slate-800 h-20'>

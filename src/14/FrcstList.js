@@ -1,21 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import getCode from './getcode.json'
 import TailSelect from '../UI/TailSelect';
 
-export default function UltraSrtFrcst() {
+export default function FrcstList() {
 
-  const dt = useParams().dt;
-  const area = useParams().area;
-  const x = useParams().x;
-  const y = useParams().y;
-  const gubun = "초단기예보";
+  const [sParams] = useSearchParams();
 
-  // console.log(dt, area, x, y);
+  const dt = sParams.get("dt");
+  const area = sParams.get("area");
+  const x = sParams.get("x");
+  const y = sParams.get("y");
+  const gubun = sParams.get("gubun");
 
   // fetch data state 변수로 저장
   const [tdata, setTdata] = useState([]);
-  const [filteredTdata, setFilteredTdata] = useState();
 
   // select 박스 선택값
   const [selItemName, setSelItemName] = useState();
@@ -29,37 +28,18 @@ export default function UltraSrtFrcst() {
 
   // 데이터 가져오기
   useEffect(() => {
-      let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?`;
-      url = url  + `serviceKey=${process.env.REACT_APP_APIKEY}&pageNo=1&numOfRows=1000&dataType=JSON`;
-      url = url + `&base_date=${dt}&base_time=0630&nx=${x}&ny=${y}`;
 
+      //getVilageFcst
+      //getUltraSrtFcst
+
+      let url = `https://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/${gubun == "초단기예보" ? "getUltraSrtFcst" : "getVilageFcst"}?`;
+      url = url + `serviceKey=${process.env.REACT_APP_APIKEY}&pageNo=1&numOfRows=1000&dataType=JSON`;
+      url = url + `&base_date=${dt}&base_time=${gubun == "초단기예보" ? "0630" : "0500"}&nx=${x}&ny=${y}`;
+
+      //console.log(url);
       getData(url);
 
   }, []);
-
-  // tdata 가 저장되었을 때
-  /*
-  useEffect(() => {
-    let tm = tdata.map(item => 
-      <tr className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-          <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-            {item["category"]}
-          </th>
-          <td className="px-6 py-4">
-            {item.fcstDate.substring(0, 4) + "-" + item.fcstDate.substring(4, 6) + '-' + item.fcstDate.substring(6, 8)}
-          </td>
-          <td className="px-6 py-4">
-            {item.fcstTime.substring(0,2) + ":" + item.fcstTime.substring(2,4)}
-          </td>
-          <td className="px-6 py-4">
-            {item["fcstValue"]}
-          </td>
-      </tr>
-    );
-
-    setTrTags(tm);
-  }, [tdata])
-  */
 
   useEffect(() => {
 
@@ -114,8 +94,10 @@ export default function UltraSrtFrcst() {
       setTrTags([]);
       return;
     }
+
     setSelItemName(itemRef.current.value.split(' (')[0]);
     setSelItem(itemRef.current.value.split(' (')[1].replace(')',''));
+    
     
   }
 
